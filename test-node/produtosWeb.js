@@ -1,14 +1,23 @@
 const http = require('http');
 const port = 3000;
-const server = http.createServer((req, res) => {
-    res.end(`
-    <html>
-    <body>
-        <h1>Listagem dos produtos</h1>
-    </body>
-    </html>`);
-});
 
-// Start node server
-server.listen(port);
+http.createServer((req, res) => {
+    if(req.url === '/produtos') {
+        res.end(`
+        <html>
+        <body>
+            <h1>Listando os produtos da loja</h1>
+        </body>
+        </html>`);
+    } else {
+        res.end(`
+        <html>
+        <body>
+            <h1>Home</h1>
+        </body>
+        </html>
+        `);
+    }
+}).listen(port); // Starting node server
+
 console.log(`Listen in port: ${port}`);
