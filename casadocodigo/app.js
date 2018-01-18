@@ -8,6 +8,7 @@ app.set('view engine', 'ejs');
 
 // Criando rotas
 app.get('/produtos', (req, res) => {
+    console.log('Listando...');
     res.render('produtos/lista');
 })
 
