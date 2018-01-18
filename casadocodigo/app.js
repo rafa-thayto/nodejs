@@ -3,14 +3,12 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+// settando a engine do ejs
+app.set('view engine', 'ejs');
+
 // Criando rotas
 app.get('/produtos', (req, res) => {
-    res.send(`
-    <html>
-    <body>
-        <h1>Listagem de produtos</h1>
-    </body>
-    </html>`);
+    res.render('produtos/lista');
 })
 
 app.listen(port, () => {
