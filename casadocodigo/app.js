@@ -1,17 +1,9 @@
-const express = require('express');
-// Forma padrão de invocar o express
-const app = express();
-const port = 3000;
+const app = require('./config/express')()
+const rotasProdutos = require('./app/routes/produtos')(app)
 
-// settando a engine do ejs
-app.set('view engine', 'ejs');
+const port = 3000
 
-// Criando rotas
-app.get('/produtos', (req, res) => {
-    console.log('Listando...');
-    res.render('produtos/lista');
-})
 
 app.listen(port, () => {
-    console.log(`Servidor rodando na porta: ${port}`);
-});
+    console.log(`Servidor rodando na porta: ${port}`)
+})

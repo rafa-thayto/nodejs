@@ -1,5 +1,5 @@
-const http = require('http');
-const port = 3000;
+const http = require('http')
+const port = 3000
 
 http.createServer((req, res) => {
     if(req.url === '/produtos') {
@@ -8,7 +8,7 @@ http.createServer((req, res) => {
         <body>
             <h1>Listando os produtos da loja</h1>
         </body>
-        </html>`);
+        </html>`)
     } else {
         res.end(`
         <html>
@@ -16,8 +16,8 @@ http.createServer((req, res) => {
             <h1>Home</h1>
         </body>
         </html>
-        `);
+        `)
     }
-}).listen(port); // Starting node server
+}).listen(port) // Starting node server
 
-console.log(`Listen in port: ${port}`);
+console.log(`Listen in port: ${port}`)
