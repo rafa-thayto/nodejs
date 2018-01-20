@@ -1,7 +1,7 @@
 module.exports = app => {
-    // Criando rotas
     app.get('/produtos', (req, res) => {
         const mysql = require('mysql')
+        // Creating a connection in the database
         const connection = mysql.createConnection({
             host: 'localhost',
             user: 'root',
@@ -9,12 +9,12 @@ module.exports = app => {
             database: 'casadocodigo_nodejs'
         })
 
+        // Pegando dados da tabela
         connection.query('select * from produtos', (err, results) => {
             res.send(results)
-        })
+        }) 
 
-        // res.render('produtos/lista')
-        // Fechando conexão
+        // Ending the connection in database
         connection.end()
     })
 }
