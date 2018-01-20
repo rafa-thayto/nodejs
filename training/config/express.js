@@ -1,5 +1,5 @@
-const app = require('express')()
+const app = require('express')();
 
-app.set('view engine', 'ejs')
-app.set('view', './app/views')
-module.exports = () => app
+app.set('view engine', 'ejs');
+app.set('view', './app/views');
+module.exports = () => app;
