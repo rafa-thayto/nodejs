@@ -1,5 +1,4 @@
 const app = require('./config/express')();
-const rotasProdutos = require('./app/routes/produtos')(app);
 
 const port = 3000;
 
