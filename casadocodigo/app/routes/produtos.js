@@ -2,14 +2,27 @@ module.exports = app => {
     // Criando rotas
     app.get('/produtos', (req, res) => {
 
-        const connection = app.infra.connectionFactory();
+        const connection = app.infra.connectionFactory()
+        const produtosDAO = new app.infra.ProdutosDAO(connection)
 
-        connection.query('select * from produtos', (err, results) => {
+        produtosDAO.lista((err, results) => {
             // res.send(results);
-            res.render('produtos/lista', {lista: results});
+            res.render('produtos/lista', {lista: results})
         })
 
         // Fechando conexão
         connection.end();
-    });
+    })
+
+    app.get('/produtos/remove', () => {
+
+        const connection = app.infra.connectionFactory()
+        const produtosDAO = new app.infra.ProdutosDAO(connection)
+        const produto = produtosDAO.carrega(id, callback)
+
+        if(produto) {
+            produtosDAO.remove(produto, callback)
+        }        
+
+    })
 }
