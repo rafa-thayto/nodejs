@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cadastro de livros</title>
+</head>
+<body>
+    <form action="/produtos" method="POST">
+        <div>
+            <label for="titulo">Titulo</label>
+            <input type="text" name="titulo" id="titulo" placeholder="Digite um título">
+        </div>
+        <div>
+            <label for="preco">Preço</label>
+            <input type="text" name="preco" id="preco" placeholder="150.86">
+        </div>
+        <div>
+            <label for="descricao">Descrição</label>
+            <textarea cols="20" rows="5" name="descricao" id="descricao" placeholder="Fale sobre o livro"></textarea>
+        </div>
+        <input type="submit" value="Cadastrar">
+
+    </form>
+</body>
+</html>

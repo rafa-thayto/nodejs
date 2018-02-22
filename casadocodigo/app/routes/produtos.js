@@ -1,7 +1,5 @@
 module.exports = app => {
-    // Criando rotas
-    app.get('/produtos', (req, res) => {
-
+    const listaProdutos = (req, res) => {
         const connection = app.infra.connectionFactory()
         const produtosDAO = new app.infra.ProdutosDAO(connection)
 
@@ -9,20 +7,25 @@ module.exports = app => {
             // res.send(results);
             res.render('produtos/lista', {lista: results})
         })
-
-        // Fechando conexão
         connection.end();
+    }
+    
+    // Criando rotas
+    app.get('/produtos', listaProdutos)
+
+    app.get('/produtos/form', (req, res) => {
+        res.render('produtos/form')
     })
 
-    app.get('/produtos/remove', () => {
+    app.post('/produtos', (req, res) => {
+        const produto = req.body
+        console.log(produto)
 
         const connection = app.infra.connectionFactory()
         const produtosDAO = new app.infra.ProdutosDAO(connection)
-        const produto = produtosDAO.carrega(id, callback)
 
-        if(produto) {
-            produtosDAO.remove(produto, callback)
-        }        
-
+        produtosDAO.salva(produto, (err, results) => {
+                res.redirect('/produtos')
+        })
     })
 }
