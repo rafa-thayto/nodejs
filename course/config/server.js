@@ -8,6 +8,8 @@ app.set('views', './app/views')
 
 consign()
   .include('app/routes')
+  .then('config/connectionFactory.js')
+  .then('app/models', {cwd: 'app'})
   .into(app)
 
 module.exports = app
