@@ -7,8 +7,17 @@ const db = require('../services/mysql')
 // db.categories().delete()
 
 const routes = (server) => {
-  server.get('/category', (req, res, next) => {
-    db.categories().all()
+  server.get('/category', async (req, res, next) => {
+    // Using try_catch
+    try {
+      res.send(await db.categories.all())
+      next()
+    } catch (error) {
+      res.send(error)
+      next()
+    }
+    // Using then and catch
+    /* db.categories().all()
       .then(categories => {
         res.send(categories)
         next()
@@ -16,7 +25,7 @@ const routes = (server) => {
       .catch(error => {
         res.send(error)
         next()
-      })
+      }) */
   })
 
   server.post('/category', (req, res, next) => {
