@@ -5,9 +5,9 @@ const routes = (server) => {
   server.get('categoria', async (req, res, next) => {
     try {
       res.send(await db.categories().all())
-      next()
     } catch (error) {
       res.send(error)
+    } finally {
       next()
     }
   })
@@ -16,9 +16,9 @@ const routes = (server) => {
     const { name } = req.params
     try {
       res.send(await db.categories().save(name))
-      next()
     } catch (error) {
       res.send(error)
+    } finally {
       next()
     }
   })
@@ -27,9 +27,9 @@ const routes = (server) => {
     const { id, name } = req.params
     try {
       res.send(await db.categories().update(id, name))
-      next()
     } catch (error) {
       res.send(error)
+    } finally {
       next()
     }
   })
@@ -38,9 +38,9 @@ const routes = (server) => {
     const { id } = req.params
     try {
       res.send(await db.categories().del(id))
-      next()
     } catch (error) {
       res.send(error)
+    } finally {
       next()
     }
   })
