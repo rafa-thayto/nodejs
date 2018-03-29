@@ -3,15 +3,20 @@ require('dotenv').config()
 
 const test = require('ava')
 const { connection, errorHandler } = require('./setup')
-
 const categories = require('../categories')({ connection, errorHandler })
-
 const create = () => categories.save('category-test')
 
 // Limpa os dados da tabela antes de testar
 test.beforeEach(t => connection.query('TRUNCATE TABLE categories'))
 // Garante que sempre a table seja "Truncada"
 test.after.always(t => connection.query('TRUNCATE TABLE categories'))
+
+test('Lista de categoria', async t => {
+  await create()
+  const list = await categories.all()
+  t.is(list.categories.length, 1)
+  t.is(list.categories[0].name, 'category-test')
+})
 
 test('Criação de categoria', async t => {
   const result = await create()
