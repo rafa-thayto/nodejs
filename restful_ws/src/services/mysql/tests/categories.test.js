@@ -1,6 +1,4 @@
 
-require('dotenv').config()
-
 const test = require('ava')
 const { connection, errorHandler } = require('./setup')
 const categories = require('../categories')({ connection, errorHandler })
