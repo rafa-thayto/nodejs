@@ -1,4 +1,5 @@
 
+require('dotenv').config()
 const sha1 = require('sha1')
 const jwt = require('jsonwebtoken')
 
@@ -13,11 +14,11 @@ const auth = deps => {
         connection.query(queryString, queryData, (error, results) => {
           if (error || !results.length) {
             errorHandler(error, 'Falha ao localizar o usuário', reject)
-            return
+            return false
           }
           const { email, id } = results[0]
 
-          const token = jwt.sign({email, id}, 'macarrao', { expiresIn: 60 * 60 * 24 })
+          const token = jwt.sign({email, id}, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 })
           console.log(token)
           resolve({ token })
         })
